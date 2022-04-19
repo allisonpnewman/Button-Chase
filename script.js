@@ -1,94 +1,105 @@
-function randomizeButton(btn) {
-    btn.className = "random";
-    btn.style.top = Math.floor(Math.random() * 600) + 'px';
-    btn.style.left = Math.floor(Math.random() * 800) + 'px';
-    btn.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-    btn.style.color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-    var randomBorderStyle;
-    switch (Math.floor(Math.random() * 10)) {
-        case 0:
-            randomBorderStyle = 'dotted';
-            break;
-        case 1:
-            randomBorderStyle = 'dashed';
-            break;
-        case 2:
-            randomBorderStyle = 'solid';
-            break;
-        case 3:
-            randomBorderStyle = 'double';
-            break;
-        case 4:
-            randomBorderStyle = 'groove';
-            break;
-        case 5:
-            randomBorderStyle = 'ridge';
-            break;
-        case 6:
-            randomBorderStyle = 'inset';
-            break;
-        case 7:
-            randomBorderStyle = 'outset';
-            break;
-        case 8:
-            randomBorderStyle = 'none';
-            break;
-        case 9:
-            randomBorderStyle = 'hidden';
-            break;
-    }
-    btn.style.border = `${Math.floor(Math.random() * 10)}px ${randomBorderStyle} rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+function rndmNum(max) {
+    return Math.floor(Math.random() * max);
+}
+function rndmText() {
     var uncapitalized = 'click me';
     var randomCapitalization = '';
     for (var x = 0; x < uncapitalized.length; x++) {
-        randomCapitalization += Math.floor(Math.random() * 2) == 0 ? uncapitalized.substring(x, x+1).toUpperCase() : uncapitalized.substring(x, x+1);
+        randomCapitalization += rndmNum(2) == 0 ? uncapitalized.substring(x, x+1).toUpperCase() : uncapitalized.substring(x, x+1);
     }
-    btn.innerHTML = randomCapitalization;
-    btn.style.fontSize = `${Math.floor(Math.random() * 200) + 50}%`;
-    btn.style.padding = `${Math.floor(Math.random() * 70)}px`;
-    var randomBorderRadius;
-    switch (Math.floor(Math.random() * 10)) {
+    return randomCapitalization;
+}
+function rndmColor() {
+    return `rgb(${rndmNum(256)}, ${rndmNum(256)}, ${rndmNum(256)})`;
+}
+function rndmBorderStyle() {
+    switch (rndmNum(10)) {
         case 0:
-            randomBorderRadius = '0';
+            return 'dotted';
             break;
         case 1:
-            randomBorderRadius = '2px';
+            return 'dashed';
             break;
         case 2:
-            randomBorderRadius = '5px';
+            return 'solid';
             break;
         case 3:
-            randomBorderRadius = '8px';
+            return 'double';
             break;
         case 4:
-            randomBorderRadius = '10px';
+            return 'groove';
             break;
         case 5:
-            randomBorderRadius = '12px';
+            return 'ridge';
             break;
         case 6:
-            randomBorderRadius = '15px';
+            return 'inset';
             break;
         case 7:
-            randomBorderRadius = '20px';
+            return 'outset';
             break;
         case 8:
-            randomBorderRadius = '25px';
+            return 'none';
             break;
         case 9:
-            randomBorderRadius = '50%';
+            return 'hidden';
             break;
     }
-    btn.style.borderRadius = randomBorderRadius;
+}
+function rndmBorderRadius() {
+    switch (rndmNum(10)) {
+        case 0:
+            return '0';
+            break;
+        case 1:
+            return '2px';
+            break;
+        case 2:
+            return '5px';
+            break;
+        case 3:
+            return '8px';
+            break;
+        case 4:
+            return '10px';
+            break;
+        case 5:
+            return '12px';
+            break;
+        case 6:
+            return '15px';
+            break;
+        case 7:
+            return '20px';
+            break;
+        case 8:
+            return '25px';
+            break;
+        case 9:
+            return '50%';
+            break;
+    }
+}
+function randomizeButton(btn) {
+    btn.className = "random";
+    btn.style.top = rndmNum(600) + 'px';
+    btn.style.left = rndmNum(800) + 'px';
+    btn.innerHTML = rndmText();
+    btn.style.fontSize = `${rndmNum(200) + 50}%`;
+    btn.style.padding = `${rndmNum(70)}px`;
+    btn.style.backgroundColor = rndmColor();
+    btn.style.color = rndmColor();
+    btn.style.border = `${rndmNum(10)}px ${rndmBorderStyle()} ${rndmColor()}`;
+    btn.style.borderRadius = rndmBorderRadius();
 }
 
 function win(btn) {
     btn.innerHTML = 'YOU WIN';
+    btn.style.fontSize = '200%';
+    btn.style.padding = '20px';
     btn.style.backgroundColor = 'green';
     btn.style.color = 'black';
     btn.style.border = '3px solid black';
-    btn.style.fontSize = '200%';
-    btn.style.padding = '20px';
     btn.style.borderRadius = '10px';
     btn.style.cursor = 'auto';
     btn.onmouseover = '';
