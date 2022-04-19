@@ -1,0 +1,13 @@
+button {
+    font-size: 120%;
+    padding: 20px;
+    display: block;
+    margin: 50px auto;
+    cursor: pointer;
+}
+
+button.random {
+    display: inline;
+    margin: 0;
+    position: absolute;
+}
